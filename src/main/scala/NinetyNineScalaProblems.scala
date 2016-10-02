@@ -10,7 +10,7 @@ object NinetyNineScalaProblems {
   }
 
   @tailrec
-  def penultimate(ls: List[Int]): Int = ls match {
+  def penultimate[T](ls: List[T]): T = ls match {
     case _ if ls.size <= 1 => throw new RuntimeException("no such element")
     case beforeLast :: last :: Nil => beforeLast
     case h :: tail => penultimate(tail)
