@@ -1,3 +1,5 @@
 # ninety-nine-scala-problems
 
-my Scala / FP/ TDD - KATA
+Scala / FP / TDD - kata
+
+http://aperiodic.net/phil/scala/s-99/
