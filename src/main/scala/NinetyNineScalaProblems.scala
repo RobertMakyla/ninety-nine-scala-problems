@@ -23,4 +23,9 @@ object NinetyNineScalaProblems {
     case _ :: tail => nth(n - 1, tail)
   }
 
+  @tailrec
+  def length(ls: List[_], total: Int = 0): Int = ls match {
+    case Nil => total
+    case _ :: tail => length(tail, total + 1)
+  }
 }

@@ -59,7 +59,16 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
     "corner case II: first element" in {
       nth(1, List(2, 3)) mustBe 3
     }
+  }
 
+  "P04 (*) Find the number of elements of a list." - {
+    "0 elements" in {
+      NinetyNineScalaProblems.length(Nil) mustBe 0
+    }
+
+    "n elements" in {
+      NinetyNineScalaProblems.length(List(1, 1, 1)) mustBe 3
+    }
   }
 
 }
