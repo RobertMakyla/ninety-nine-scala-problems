@@ -28,4 +28,10 @@ object NinetyNineScalaProblems {
     case Nil => total
     case _ :: tail => length(tail, total + 1)
   }
+
+  @tailrec
+  def reverse[T](ls: List[T], total: List[T] = Nil): List[T] = ls match {
+    case Nil => total
+    case h :: tail => reverse(tail, h :: total)
+  }
 }

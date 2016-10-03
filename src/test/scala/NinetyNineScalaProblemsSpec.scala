@@ -65,9 +65,17 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
     "0 elements" in {
       NinetyNineScalaProblems.length(Nil) mustBe 0
     }
-
     "n elements" in {
       NinetyNineScalaProblems.length(List(1, 1, 1)) mustBe 3
+    }
+  }
+
+  "P05 (*) Reverse a list." - {
+    "0 elements" in {
+      reverse(Nil) mustBe Nil
+    }
+    "n elements" in {
+      reverse(List(1, 2, 3)) mustBe List(3, 2, 1)
     }
   }
 
