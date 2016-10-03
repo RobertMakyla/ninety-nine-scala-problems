@@ -79,4 +79,16 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
     }
   }
 
+  "P06 (*) Find out whether a list is a palindrome." - {
+    "0 elements" in {isPalindrome(Nil) mustBe true}
+    "1 elements" in {isPalindrome(List(1)) mustBe true}
+    "2 elements palindrome" in {isPalindrome(List(1,1)) mustBe true}
+    "2 elements not palindrome" in {isPalindrome(List(1,2)) mustBe false}
+    "3 elements palindrome" in {isPalindrome(List(1,2,1)) mustBe true}
+    "3 elements not palindrome" in {isPalindrome(List(1,2,3)) mustBe false}
+    "4 elements palindrome" in {isPalindrome(List(1,2,2,1)) mustBe true}
+    "4 elements not palindrome" in {isPalindrome(List(1,2,3,1)) mustBe false}
+    "5 elements palindrome" in {isPalindrome(List(1,2,3,3,2,1)) mustBe true}
+    "5 elements not palindrome" in {isPalindrome(List(1,2,3,3,1,1)) mustBe false}
+  }
 }

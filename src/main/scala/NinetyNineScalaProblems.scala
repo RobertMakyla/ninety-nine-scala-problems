@@ -34,4 +34,11 @@ object NinetyNineScalaProblems {
     case Nil => total
     case h :: tail => reverse(tail, h :: total)
   }
+
+  @tailrec
+  def isPalindrome[T](ls: List[T]): Boolean = ls match {
+    case _ if ls.size < 2 => true
+    case h :: last :: Nil => h == last
+    case _ => ls.head == ls.last && isPalindrome(ls.init.tail)
+  }
 }
