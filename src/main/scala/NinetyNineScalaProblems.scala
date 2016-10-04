@@ -41,4 +41,10 @@ object NinetyNineScalaProblems {
     case h :: last :: Nil => h == last
     case _ => ls.head == ls.last && isPalindrome(ls.init.tail)
   }
+
+  def flatten(ls: List[Any]): List[Any] = ls.flatMap{
+    case l: List[_] => flatten(l)
+    case t => List(t)
+  }
+
 }

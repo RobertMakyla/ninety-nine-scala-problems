@@ -98,4 +98,27 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
       }
     }
   }
+  "P07 (**) Flatten a nested list structure." - {
+    "0 elements - 1 level" in {
+      flatten(Nil) mustBe Nil
+    }
+    "n elements - 1 level" in {
+      flatten(List(1, 2, 3)) mustBe List(1,2,3)
+    }
+    "0 elements - 2 levels" in {
+      flatten(List(Nil)) mustBe Nil
+    }
+    "n elements - 2 levels" in {
+      flatten(List(1, 2, 3, List(4))) mustBe List(1,2,3,4)
+    }
+    "0 elements - 3 levels" in {
+      flatten(List(List(Nil))) mustBe Nil
+    }
+    "1 elements - 3 levels" in {
+      flatten(List(List(1))) mustBe List(1)
+    }
+    "n elements - 3 levels" in {
+      flatten(List(1, 2, 3, List(4, List(5)))) mustBe List(1,2,3,4, 5)
+    }
+  }
 }
