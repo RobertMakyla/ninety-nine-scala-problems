@@ -55,9 +55,10 @@ object NinetyNineScalaProblems {
       }
   }
 
-  def compressRec[T](ls: List[T]): List[T] = ls match {
-    case h :: tail => h :: compressRec(tail.dropWhile(_ == h))
-    case empty => Nil
+  @tailrec
+  def compressTailRec[T](ls: List[T], total : List[T] = Nil): List[T] = ls match {
+    case h :: tail => compressTailRec(tail.dropWhile(_ == h), h :: total)
+    case empty => total.reverse
   }
 
 }
