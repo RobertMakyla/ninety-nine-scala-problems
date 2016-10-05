@@ -121,4 +121,22 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
       flatten(List(1, 2, 3, List(4, List(5)))) mustBe List(1,2,3,4, 5)
     }
   }
+
+  "P08 (**) Eliminate consecutive duplicates of list elements." - {
+    "0 elements" in {
+      compress(Nil) mustBe Nil
+    }
+    "1 elements" in {
+      compress(List(1)) mustBe List(1)
+    }
+    "same elements" in {
+      compress(List(1,1,1,1,1,1)) mustBe List(1)
+    }
+    "n elements" in {
+      compress(List(1,1,1,2,2,2,3,4,4)) mustBe List(1,2,3,4)
+    }
+    "n elements ending as different elem" in {
+      compress(List(1,1,1,2,2,2,3,4,4,5)) mustBe List(1,2,3,4,5)
+    }
+  }
 }
