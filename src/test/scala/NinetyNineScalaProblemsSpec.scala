@@ -103,13 +103,13 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
       flatten(Nil) mustBe Nil
     }
     "n elements - 1 level" in {
-      flatten(List(1, 2, 3)) mustBe List(1,2,3)
+      flatten(List(1, 2, 3)) mustBe List(1, 2, 3)
     }
     "0 elements - 2 levels" in {
       flatten(List(Nil)) mustBe Nil
     }
     "n elements - 2 levels" in {
-      flatten(List(1, 2, 3, List(4))) mustBe List(1,2,3,4)
+      flatten(List(1, 2, 3, List(4))) mustBe List(1, 2, 3, 4)
     }
     "0 elements - 3 levels" in {
       flatten(List(List(Nil))) mustBe Nil
@@ -118,7 +118,7 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
       flatten(List(List(1))) mustBe List(1)
     }
     "n elements - 3 levels" in {
-      flatten(List(1, 2, 3, List(4, List(5)))) mustBe List(1,2,3,4, 5)
+      flatten(List(1, 2, 3, List(4, List(5)))) mustBe List(1, 2, 3, 4, 5)
     }
   }
 
@@ -127,21 +127,21 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
       compress(Nil) mustBe Nil
       compressTailRec(Nil) mustBe Nil
     }
-    "1 elements" in {
+    "1 element" in {
       compress(List(1)) mustBe List(1)
       compressTailRec(List(1)) mustBe List(1)
     }
     "same elements" in {
-      compress(List(1,1,1,1,1,1)) mustBe List(1)
-      compressTailRec(List(1,1,1,1,1,1)) mustBe List(1)
+      compress(List(1, 1, 1, 1, 1, 1)) mustBe List(1)
+      compressTailRec(List(1, 1, 1, 1, 1, 1)) mustBe List(1)
     }
     "n elements" in {
-      compress(List(1,1,1,2,2,2,3,4,4)) mustBe List(1,2,3,4)
-      compressTailRec(List(1,1,1,2,2,2,3,4,4)) mustBe List(1,2,3,4)
+      compress(List(1, 1, 1, 2, 2, 2, 3, 4, 4)) mustBe List(1, 2, 3, 4)
+      compressTailRec(List(1, 1, 1, 2, 2, 2, 3, 4, 4)) mustBe List(1, 2, 3, 4)
     }
     "n elements ending as different elem" in {
-      compress(List(1,1,1,2,2,2,3,4,4,5)) mustBe List(1,2,3,4,5)
-      compressTailRec(List(1,1,1,2,2,2,3,4,4,5)) mustBe List(1,2,3,4,5)
+      compress(List(1, 1, 1, 2, 2, 2, 3, 4, 4, 5)) mustBe List(1, 2, 3, 4, 5)
+      compressTailRec(List(1, 1, 1, 2, 2, 2, 3, 4, 4, 5)) mustBe List(1, 2, 3, 4, 5)
     }
   }
 }
