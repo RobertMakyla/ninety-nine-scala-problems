@@ -146,35 +146,23 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
   }
 
   "P09 (**) Pack consecutive duplicates of list elements into sublists." - {
-    "0 elements" in {
-      pack(Nil) mustBe Nil
+    case class TestCase[T](hint: String, ls: List[T], expected: List[List[T]])
+    List(
+      TestCase("0 elements", Nil, Nil),
+      TestCase("1 element", List(1), List(List(1))),
+      TestCase("2 element - the same", List(1, 1), List(List(1, 1))),
+      TestCase("2 element - different", List(1, 2), List(List(1), List(2))),
+      TestCase("5 element - different", List(1, 1, 2, 3, 3), List(List(1, 1), List(2), List(3, 3))),
+      TestCase("5 element - different but repeating", List(1, 1, 2, 1), List(List(1, 1), List(2), List(1))),
+      TestCase("n elements - ultimate test", List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e),
+        List(List('a, 'a, 'a, 'a), List('b), List('c, 'c), List('a, 'a), List('d), List('e, 'e, 'e, 'e)))
+    ).foreach { case TestCase(hint, ls, expected) =>
+      hint in {
+        pack(ls) mustBe expected
+        packTailRec(ls) mustBe expected
+      }
     }
-    "1 element" in {
-      pack(List(1)) mustBe List(List(1))
-    }
-    "2 element - the same" in {
-      pack(List(1, 1)) mustBe List(List(1, 1))
-    }
-    "2 element- different" in {
-      pack(List(1, 2)) mustBe List(List(1), List(2))
-    }
-    "5 element- different" in {
-      pack(List(1, 1, 2, 3, 3)) mustBe List(List(1, 1), List(2), List(3, 3))
-    }
-    "5 element- different but repeating" in {
-      pack(List(1, 1, 2, 1)) mustBe List(List(1, 1), List(2), List(1))
-    }
-    "n elements - ultimate test" in {
-      val actual = pack(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
-      actual mustBe List(
-        List('a, 'a, 'a, 'a),
-        List('b),
-        List('c, 'c),
-        List('a, 'a),
-        List('d),
-        List('e, 'e, 'e, 'e)
-      )
-    }
+
   }
 
 }

@@ -72,4 +72,12 @@ object NinetyNineScalaProblems {
       List(h :: firstPack) ++ pack(rest)
   }
 
+  @tailrec
+  def packTailRec[T](ls: List[T], total: List[List[T]] = Nil): List[List[T]] = ls match {
+    case Nil => total
+    case h :: tail =>
+      val (firstPack, rest) = tail.span(_ == h)
+      packTailRec(rest, total ++ List(h :: firstPack))
+  }
+
 }
