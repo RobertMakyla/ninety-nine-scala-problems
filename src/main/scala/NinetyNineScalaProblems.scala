@@ -42,7 +42,7 @@ object NinetyNineScalaProblems {
     case _ => ls.head == ls.last && isPalindrome(ls.init.tail)
   }
 
-  def flatten(ls: List[Any]): List[Any] = ls.flatMap{
+  def flatten(ls: List[Any]): List[Any] = ls.flatMap {
     case l: List[_] => flatten(l)
     case t => List(t)
   }
@@ -56,9 +56,20 @@ object NinetyNineScalaProblems {
   }
 
   @tailrec
-  def compressTailRec[T](ls: List[T], total : List[T] = Nil): List[T] = ls match {
+  def compressTailRec[T](ls: List[T], total: List[T] = Nil): List[T] = ls match {
     case h :: tail => compressTailRec(tail.dropWhile(_ == h), h :: total)
     case empty => total.reverse
+  }
+
+  /**
+    * span() eg.: List(1, 2, 3, -4, 5) span (_ > 0)
+    * returns tuple:  (List(1, 2, 3), List(-4, 5))
+    */
+  def pack[T](ls: List[T]): List[List[T]] = ls match {
+    case Nil => List.empty[List[T]]
+    case h :: tail =>
+      val (firstPack, rest) = tail.span(_ == h)
+      List(h :: firstPack) ++ pack(rest)
   }
 
 }

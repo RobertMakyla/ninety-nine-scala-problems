@@ -144,4 +144,37 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
       compressTailRec(List(1, 1, 1, 2, 2, 2, 3, 4, 4, 5)) mustBe List(1, 2, 3, 4, 5)
     }
   }
+
+  "P09 (**) Pack consecutive duplicates of list elements into sublists." - {
+    "0 elements" in {
+      pack(Nil) mustBe Nil
+    }
+    "1 element" in {
+      pack(List(1)) mustBe List(List(1))
+    }
+    "2 element - the same" in {
+      pack(List(1, 1)) mustBe List(List(1, 1))
+    }
+    "2 element- different" in {
+      pack(List(1, 2)) mustBe List(List(1), List(2))
+    }
+    "5 element- different" in {
+      pack(List(1, 1, 2, 3, 3)) mustBe List(List(1, 1), List(2), List(3, 3))
+    }
+    "5 element- different but repeating" in {
+      pack(List(1, 1, 2, 1)) mustBe List(List(1, 1), List(2), List(1))
+    }
+    "n elements - ultimate test" in {
+      val actual = pack(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
+      actual mustBe List(
+        List('a, 'a, 'a, 'a),
+        List('b),
+        List('c, 'c),
+        List('a, 'a),
+        List('d),
+        List('e, 'e, 'e, 'e)
+      )
+    }
+  }
+
 }
