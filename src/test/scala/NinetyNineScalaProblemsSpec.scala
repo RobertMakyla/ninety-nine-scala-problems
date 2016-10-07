@@ -123,25 +123,23 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
   }
 
   "P08 (**) Eliminate consecutive duplicates of list elements." - {
-    "0 elements" in {
-      compress(Nil) mustBe Nil
-      compressTailRec(Nil) mustBe Nil
-    }
-    "1 element" in {
-      compress(List(1)) mustBe List(1)
-      compressTailRec(List(1)) mustBe List(1)
-    }
-    "same elements" in {
-      compress(List(1, 1, 1, 1, 1, 1)) mustBe List(1)
-      compressTailRec(List(1, 1, 1, 1, 1, 1)) mustBe List(1)
-    }
-    "n elements" in {
-      compress(List(1, 1, 1, 2, 2, 2, 3, 4, 4)) mustBe List(1, 2, 3, 4)
-      compressTailRec(List(1, 1, 1, 2, 2, 2, 3, 4, 4)) mustBe List(1, 2, 3, 4)
-    }
-    "n elements ending as different elem" in {
-      compress(List(1, 1, 1, 2, 2, 2, 3, 4, 4, 5)) mustBe List(1, 2, 3, 4, 5)
-      compressTailRec(List(1, 1, 1, 2, 2, 2, 3, 4, 4, 5)) mustBe List(1, 2, 3, 4, 5)
+    case class TestCase[T](hint: String, ls: List[T], expected: List[T])
+    List(
+      TestCase("0 elements", Nil, Nil),
+      TestCase("1 element", List(1), List(1)),
+      TestCase("n same elements", List(1, 1, 1, 1, 1, 1), List(1)),
+      TestCase("n different elements", List(1, 1, 1, 2, 2, 2, 3, 4, 4), List(1, 2, 3, 4)),
+      TestCase("n different elements ending as different elem", List(1, 1, 1, 2, 2, 2, 3, 4, 4, 5), List(1, 2, 3, 4, 5)),
+      TestCase(
+        "ultimate test",
+        List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e),
+        List('a, 'b, 'c, 'a, 'd, 'e)
+      )
+    ).foreach { case TestCase(hint, ls, expected) =>
+      hint in {
+        compress(ls) mustBe expected
+        compressTailRec(ls) mustBe expected
+      }
     }
   }
 
@@ -154,8 +152,11 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
       TestCase("2 element - different", List(1, 2), List(List(1), List(2))),
       TestCase("5 element - different", List(1, 1, 2, 3, 3), List(List(1, 1), List(2), List(3, 3))),
       TestCase("5 element - different but repeating", List(1, 1, 2, 1), List(List(1, 1), List(2), List(1))),
-      TestCase("n elements - ultimate test", List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e),
-        List(List('a, 'a, 'a, 'a), List('b), List('c, 'c), List('a, 'a), List('d), List('e, 'e, 'e, 'e)))
+      TestCase(
+        "ultimate test",
+        List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e),
+        List(List('a, 'a, 'a, 'a), List('b), List('c, 'c), List('a, 'a), List('d), List('e, 'e, 'e, 'e))
+      )
     ).foreach { case TestCase(hint, ls, expected) =>
       hint in {
         pack(ls) mustBe expected
