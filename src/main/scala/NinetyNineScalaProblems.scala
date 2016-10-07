@@ -80,4 +80,11 @@ object NinetyNineScalaProblems {
       packTailRec(rest, total ++ List(h :: firstPack))
   }
 
+  def encode[T](ls: List[T]): List[(Int, T)] = pack(ls).map {
+    pack =>
+      pack.headOption.fold(throw new RuntimeException("list should not be empty")) { head =>
+        (pack.size, head)
+      }
+  }
+
 }
