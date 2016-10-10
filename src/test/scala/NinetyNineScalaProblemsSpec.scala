@@ -227,4 +227,22 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
     }
   }
 
+  "P13 (**) Run-length encoding of a list (direct solution)." - {
+    "0 elements" in {
+      encodeDirect(Nil) mustBe Nil
+    }
+    "1 elements" in {
+      encodeDirect(List(1)) mustBe List((1, 1))
+    }
+    "2 elements - the same" in {
+      encodeDirect(List(1, 1)) mustBe List((2, 1))
+    }
+    "2 elements- different" in {
+      encodeDirect(List(9, 9, 8, 7)) mustBe List((2, 9), (1, 8), (1, 7))
+    }
+    "n elements - ultimate test" in {
+      encodeDirect(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)) mustBe
+        List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e))
+    }
+  }
 }
