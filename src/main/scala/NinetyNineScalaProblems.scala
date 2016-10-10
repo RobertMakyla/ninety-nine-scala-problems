@@ -88,7 +88,7 @@ object NinetyNineScalaProblems {
   }
 
   def encodeModified[T](ls: List[T]): List[Any] = encode(ls).map {
-    case (n , elem) if n == 1 => elem
+    case (1 , elem) => elem
     case (n , elem) => (n, elem)
   }
 
