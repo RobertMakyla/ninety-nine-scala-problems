@@ -171,17 +171,37 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
       encode(Nil) mustBe Nil
     }
     "1 elements" in {
-      encode(List(1)) mustBe List((1,1))
+      encode(List(1)) mustBe List((1, 1))
     }
     "2 elements - the same" in {
-      encode(List(1, 1)) mustBe List((2,1))
+      encode(List(1, 1)) mustBe List((2, 1))
     }
     "2 elements- different" in {
-      encode(List(9, 9, 8 , 7)) mustBe List((2,9), (1,8), (1,7))
+      encode(List(9, 9, 8, 7)) mustBe List((2, 9), (1, 8), (1, 7))
     }
     "n elements - ultimate test" in {
       encode(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)) mustBe
-        List((4,'a), (1,'b), (2,'c), (2,'a), (1,'d), (4,'e))
+        List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e))
     }
   }
+
+  "P11 (*) Modified run-length encoding." - {
+    "0 elements" - {
+      encodeModified(List()) mustBe Nil
+    }
+
+    "1 element" - {
+      encodeModified(List(10)) mustBe List(10)
+    }
+
+    "2 element" - {
+      encodeModified(List(10, 10)) mustBe List((2, 10))
+    }
+
+    "n element" - {
+      encodeModified(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)) mustBe
+        List((4, 'a), 'b, (2, 'c), (2, 'a), 'd, (4, 'e))
+    }
+  }
+
 }
