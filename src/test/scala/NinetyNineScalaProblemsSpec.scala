@@ -204,4 +204,27 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
     }
   }
 
+  "P12 (**) Decode a run-length encoded list." - {
+    "0 elements" - {
+      decode(List()) mustBe Nil
+    }
+
+    "1 element" - {
+      decode(List((1, 1))) mustBe List(1)
+    }
+
+    "2 element" - {
+      decode(List((2, 1))) mustBe List(1, 1)
+    }
+
+    "3 elements" - {
+      decode(List((2, 9), (1, 8), (1, 7))) mustBe List(9, 9, 8, 7)
+    }
+
+    "n element" - {
+      decode(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e))) mustBe
+        List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)
+    }
+  }
+
 }

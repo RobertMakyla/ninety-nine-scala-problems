@@ -92,4 +92,8 @@ object NinetyNineScalaProblems {
     case (n , elem) => (n, elem)
   }
 
+  def decode[T](ls: List[(Int, T)]): List[T] = ls.flatMap {
+    case (n, elem) => List.fill(n)(elem)
+  }
+
 }
