@@ -107,4 +107,8 @@ object NinetyNineScalaProblems {
 
   def duplicateN[T](n: Int)(ls: List[T]): List[T] = ls.flatMap { e => List.fill(n)(e) }
 
+  def drop[T](n: Int, ls: List[T]): List[T] = ls.zipWithIndex.filterNot {
+    case (_, index) => (index + 1) % n == 0
+  }.map(_._1)
+
 }

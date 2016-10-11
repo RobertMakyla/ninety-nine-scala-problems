@@ -266,4 +266,19 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
       List('a, 'a, 'a, 'b, 'b, 'b, 'c, 'c, 'c, 'c, 'c, 'c, 'd, 'd, 'd)
   }
 
+  "P16 (**) Drop every Nth element from a list." - {
+    "0 elements" in {
+      drop(1, List()) mustBe Nil
+    }
+    "every 1 elem" in {
+      drop(1, List(1, 2, 3)) mustBe Nil
+    }
+    "every 2 elems" in {
+      drop(2, List(1, 2, 3, 4, 5, 6)) mustBe List(1, 3, 5)
+    }
+    "ultimate" in {
+      drop(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) mustBe List('a, 'b, 'd, 'e, 'g, 'h, 'j, 'k)
+    }
+  }
+
 }
