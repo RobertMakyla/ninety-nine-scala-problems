@@ -96,11 +96,10 @@ object NinetyNineScalaProblems {
     case (n, elem) => List.fill(n)(elem)
   }
 
-  def encodeDirect[T](ls: List[T]): List[(Int, T)] = ls match {
-    case Nil => Nil
-    case _ =>
-      val (firstPack, rest) = ls.span(_ == ls.head)
-      (firstPack.size, firstPack.head) :: encodeDirect(rest)
+  def encodeDirect[T](ls: List[T]): List[(Int, T)] = if (ls.isEmpty) Nil
+  else {
+    val (firstPack, rest) = ls.span(_ == ls.head)
+    (firstPack.size, firstPack.head) :: encodeDirect(rest)
   }
 
   def duplicate[T] = duplicateN[T](2) _
