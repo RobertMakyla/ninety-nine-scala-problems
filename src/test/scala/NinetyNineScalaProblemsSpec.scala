@@ -245,4 +245,25 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
         List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e))
     }
   }
+
+  "P14 (*) Duplicate the elements of a list." - {
+    "0 elements" in {
+      duplicate(Nil) mustBe List()
+    }
+    "1 elements" in {
+      duplicate(List(1)) mustBe List(1, 1)
+    }
+    "n elements - the same" in {
+      duplicate(List(1, 1, 1)) mustBe List(1, 1, 1, 1, 1, 1)
+    }
+    "n elements - different" in {
+      duplicate(List('a, 'b, 'c, 'c, 'd)) mustBe List('a, 'a, 'b, 'b, 'c, 'c, 'c, 'c, 'd, 'd)
+    }
+  }
+
+  "P15 (**) Duplicate the elements of a list a given number of times." in {
+    duplicateN(3)(List('a, 'b, 'c, 'c, 'd)) mustBe
+      List('a, 'a, 'a, 'b, 'b, 'b, 'c, 'c, 'c, 'c, 'c, 'c, 'd, 'd, 'd)
+  }
+
 }

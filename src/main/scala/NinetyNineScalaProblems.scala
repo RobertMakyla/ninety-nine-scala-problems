@@ -102,4 +102,9 @@ object NinetyNineScalaProblems {
       val (firstPack, rest) = ls.span(_ == ls.head)
       (firstPack.size, firstPack.head) :: encodeDirect(rest)
   }
+
+  def duplicate[T] = duplicateN[T](2) _
+
+  def duplicateN[T](n: Int)(ls: List[T]): List[T] = ls.flatMap { e => List.fill(n)(e) }
+
 }
