@@ -110,4 +110,6 @@ object NinetyNineScalaProblems {
     case (_, index) => (index + 1) % n == 0
   }.map(_._1)
 
+  def slice[T](index: Int, ls: List[T]) = ls.splitAt(index)
+
 }

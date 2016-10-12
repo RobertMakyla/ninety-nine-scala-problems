@@ -281,4 +281,19 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
     }
   }
 
+  "P17 (*) Split a list into two parts." - {
+    "0 elements - index 0" in {
+      slice(1, List()) mustBe(List(), List())
+    }
+    "0 elements - index 1" in {
+      slice(1, List()) mustBe(List(), List())
+    }
+    "1 elements" in {
+      slice(0, List(1)) mustBe(List(), List(1))
+    }
+    "n elements" in {
+      slice(2, List(0, 1, 2, 3)) mustBe(List(0, 1), List(2, 3))
+    }
+  }
+
 }
