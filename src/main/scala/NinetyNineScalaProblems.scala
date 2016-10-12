@@ -118,4 +118,10 @@ object NinetyNineScalaProblems {
     beforeEnd
   }
 
+  def rotate[T](i: Int, ls: List[T]): List[T] = ls match {
+    case _ if i == 0 => ls
+    case h :: tail if i > 0 => rotate(i - 1, tail ++ List(h))
+    case _ if i < 0 => rotate(i + 1, ls.last :: ls.init)
+  }
+
 }

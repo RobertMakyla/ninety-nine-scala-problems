@@ -299,4 +299,25 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
   "P18 (**) Extract a slice from a list." in {
     slice(3, 7, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) mustBe List('d, 'e, 'f, 'g)
   }
+
+  "P19 (**) Rotate a list N places to the left." - {
+    "rotate 0" in {
+      rotate(0, List(1, 2, 3)) mustBe List(1, 2, 3)
+    }
+
+    "rotate 1 forward" in {
+      rotate(1, List(1, 2, 3)) mustBe List(2, 3, 1)
+    }
+    "rotate 1 backward" in {
+      rotate(-1, List(1, 2, 3)) mustBe List(3, 1, 2)
+    }
+    "rotate n forward" in {
+      rotate(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) mustBe
+        List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k, 'a, 'b, 'c)
+    }
+    "rotate n backward" in {
+      rotate(-2, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) mustBe
+        List('j, 'k, 'a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i)
+    }
+  }
 }
