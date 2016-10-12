@@ -296,4 +296,7 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
     }
   }
 
+  "P18 (**) Extract a slice from a list." in {
+    slice(3, 7, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) mustBe List('d, 'e, 'f, 'g)
+  }
 }

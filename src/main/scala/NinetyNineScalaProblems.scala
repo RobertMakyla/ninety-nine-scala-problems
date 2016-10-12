@@ -112,4 +112,10 @@ object NinetyNineScalaProblems {
 
   def slice[T](index: Int, ls: List[T]) = ls.splitAt(index)
 
+  def slice[T](start: Int, end: Int, ls: List[T]): List[T] = {
+    val (_, afterStart) = ls.splitAt(start)
+    val (beforeEnd, _) = afterStart.splitAt(end - start)
+    beforeEnd
+  }
+
 }
