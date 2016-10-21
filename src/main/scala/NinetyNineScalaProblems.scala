@@ -62,9 +62,9 @@ object NinetyNineScalaProblems {
   }
 
   /**
-    * span() eg.: List(1, 2, 3, -4, 5) span (_ > 0)
-    * returns tuple:  (List(1, 2, 3), List(-4, 5))
-    */
+   * span() eg.: List(1, 2, 3, -4, 5) span (_ > 0)
+   * returns tuple:  (List(1, 2, 3), List(-4, 5))
+   */
   def pack[T](ls: List[T]): List[List[T]] = ls match {
     case Nil => List.empty[List[T]]
     case h :: tail =>
@@ -88,8 +88,8 @@ object NinetyNineScalaProblems {
   }
 
   def encodeModified[T](ls: List[T]): List[Any] = encode(ls).map {
-    case (1 , elem) => elem
-    case (n , elem) => (n, elem)
+    case (1, elem) => elem
+    case (n, elem) => (n, elem)
   }
 
   def decode[T](ls: List[(Int, T)]): List[T] = ls.flatMap {
@@ -125,8 +125,8 @@ object NinetyNineScalaProblems {
   }
 
   def removeAt[T](i: Int, ls: List[T]): (List[T], T) = (i, ls) match {
-    case (i, ls) if ls.size <= i => throw new NoSuchElementException
-    case (i, ls) =>
+    case _ if ls.size <= i => throw new NoSuchElementException
+    case _ =>
       val (first, second) = ls.splitAt(i)
       (first ::: second.tail, second.head)
   }
