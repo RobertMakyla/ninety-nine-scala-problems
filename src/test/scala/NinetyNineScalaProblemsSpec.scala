@@ -320,4 +320,19 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
         List('j, 'k, 'a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i)
     }
   }
+
+  "P20 (*) Remove the Kth element from a list." - {
+    "0 elements" in {
+      intercept[NoSuchElementException] {
+        removeAt(0, List())
+      }
+    }
+    "1 element" in {
+      removeAt(0, List(1)) mustBe(List(), 1)
+    }
+    "n elements" in {
+      removeAt(1, List('a, 'b, 'c, 'd)) mustBe(List('a, 'c, 'd), 'b)
+    }
+
+  }
 }

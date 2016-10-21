@@ -124,4 +124,11 @@ object NinetyNineScalaProblems {
     case _ if i < 0 => rotate(i + 1, ls.last :: ls.init)
   }
 
+  def removeAt[T](i: Int, ls: List[T]): (List[T], T) = (i, ls) match {
+    case (i, ls) if ls.size <= i => throw new NoSuchElementException
+    case (i, ls) =>
+      val (first, second) = ls.splitAt(i)
+      (first ::: second.tail, second.head)
+  }
+
 }
