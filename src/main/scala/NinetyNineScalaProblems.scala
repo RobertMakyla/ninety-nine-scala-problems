@@ -131,4 +131,12 @@ object NinetyNineScalaProblems {
       (first ::: second.tail, second.head)
     }
 
+  def insertAt[T](e: T, i: Int, ls: List[T]): List[T] =
+    if (ls.size < i) throw new NoSuchElementException
+    else {
+      val (first, second) = ls.splitAt(i)
+      first ++ (e :: second)
+    }
+
+
 }

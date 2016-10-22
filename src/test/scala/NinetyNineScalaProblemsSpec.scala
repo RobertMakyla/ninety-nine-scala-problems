@@ -335,4 +335,22 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
     }
 
   }
+
+  "P21 (*) Insert an element at a given position into a list." - {
+    "0 elements" in {
+      insertAt('a, 0, List()) mustBe List('a)
+    }
+    "0 elements - no such element" in {
+      intercept[NoSuchElementException] {
+        insertAt('a, 1, List())
+      }
+    }
+    "n elements" in {
+      insertAt(3, 3, List(0, 1, 2, 4, 5)) mustBe List(0, 1, 2, 3, 4, 5)
+    }
+    "ultimate test " in {
+      insertAt('new, 1, List('a, 'b, 'c, 'd)) mustBe List('a, 'new, 'b, 'c, 'd)
+    }
+  }
+
 }
