@@ -146,4 +146,16 @@ object NinetyNineScalaProblems {
   }
   else total.reverse ++ List(start)
 
+  private def random(i: Int) = scala.util.Random.nextInt(i)
+
+  @tailrec
+  def randomSelect[T](n: Int, ls: List[T], total: List[T] = Nil): List[T] = if (ls.size < n) throw new RuntimeException("list is too small")
+  else if (n < 0) throw new RuntimeException(s"$n is negative")
+  else if (n == 0) total
+  else {
+    val pos = random(ls.size)
+    val (first, second) = ls.splitAt(pos)
+    randomSelect(n - 1, first ++ second.tail, second.head :: total)
+  }
+
 }

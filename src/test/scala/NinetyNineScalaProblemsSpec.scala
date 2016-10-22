@@ -355,14 +355,51 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
 
   "P22 (*) Create a list containing all integers within a given range." - {
     "1 elements" in {
-      range(1,1) mustBe List(1)
+      range(1, 1) mustBe List(1)
     }
     "ascending" in {
       range(4, 9) mustBe List(4, 5, 6, 7, 8, 9)
     }
     "descending" in {
-      range(5, 3) mustBe List(5,4,3)
+      range(5, 3) mustBe List(5, 4, 3)
     }
   }
 
+  "P23 (**) Extract a given number of randomly selected elements from a list." - {
+    "list is too small" in {
+      intercept[RuntimeException] {
+        randomSelect(3, List())
+      }.getMessage mustBe "list is too small"
+    }
+    "n is negative" in {
+      intercept[RuntimeException] {
+        randomSelect(-1, List(1,2,3))
+      }.getMessage mustBe "-1 is negative"
+    }
+    "1 element but nothing to extract" in {
+      randomSelect(0, List(1)) mustBe List()
+    }
+    "1 element" in {
+        randomSelect(1, List(3)) mustBe List(3)
+    }
+    "1/2 elements" in {
+      val actual = randomSelect(1, List(3, 4))
+      (actual == List(3) || actual == List(4)) mustBe true
+    }
+    "2/2 elements" in {
+      val actual = randomSelect(2, List(3, 4))
+      (actual == List(3, 4) || actual == List(4, 3)) mustBe true
+    }
+    "1/3 elements" in {
+      val actual = randomSelect(1, List(3, 4, 5))
+      (actual == List(3) || actual == List(4) || actual == List(5)) mustBe true
+    }
+    "2/3 elements" in {
+      val actual = randomSelect(2, List(3, 4, 5))
+      (actual == List(3, 4) || actual == List(4, 5) || actual == List(3, 5) ||
+        actual == List(4, 3) || actual == List(5, 4) || actual == List(5, 3)
+        ) mustBe true
+    }
+
+  }
 }
