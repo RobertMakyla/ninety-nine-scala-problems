@@ -138,5 +138,12 @@ object NinetyNineScalaProblems {
       first ++ (e :: second)
     }
 
+  @tailrec
+  def range(start: Int, end: Int, total: List[Int] = Nil): List[Int] = if (end > start) {
+    range(start + 1, end, start :: total)
+  } else if (end < start) {
+    range(start - 1, end, start :: total)
+  }
+  else total.reverse ++ List(start)
 
 }

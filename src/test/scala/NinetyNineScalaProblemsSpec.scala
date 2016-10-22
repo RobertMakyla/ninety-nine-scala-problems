@@ -353,4 +353,16 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
     }
   }
 
+  "P22 (*) Create a list containing all integers within a given range." - {
+    "1 elements" in {
+      range(1,1) mustBe List(1)
+    }
+    "ascending" in {
+      range(4, 9) mustBe List(4, 5, 6, 7, 8, 9)
+    }
+    "descending" in {
+      range(5, 3) mustBe List(5,4,3)
+    }
+  }
+
 }
