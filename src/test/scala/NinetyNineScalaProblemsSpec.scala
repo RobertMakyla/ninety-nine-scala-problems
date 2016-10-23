@@ -373,14 +373,14 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
     }
     "n is negative" in {
       intercept[RuntimeException] {
-        randomSelect(-1, List(1,2,3))
+        randomSelect(-1, List(1, 2, 3))
       }.getMessage mustBe "-1 is negative"
     }
     "1 element but nothing to extract" in {
       randomSelect(0, List(1)) mustBe List()
     }
     "1 element" in {
-        randomSelect(1, List(3)) mustBe List(3)
+      randomSelect(1, List(3)) mustBe List(3)
     }
     "1/2 elements" in {
       val actual = randomSelect(1, List(3, 4))
@@ -402,4 +402,26 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
     }
 
   }
+
+  "P24 (*) Lotto: Draw N different random numbers from the set 1..M." - {
+    val max = 5
+    val correctValues = 1.to(max)
+    "number of elements can't be negative" in {
+      intercept[RuntimeException] {
+        lotto(-1, max)
+      }.getMessage mustBe "-1 is negative"
+    }
+    "0 elements" in {
+      lotto(0, max) mustBe Nil
+    }
+    "1-5 elements" in {
+      1.to(5).foreach { n =>
+        val actual = lotto(n, max)
+        actual.distinct.size mustBe n
+        actual.size mustBe n
+        actual.forall(correctValues.contains) mustBe true
+      }
+    }
+  }
+
 }

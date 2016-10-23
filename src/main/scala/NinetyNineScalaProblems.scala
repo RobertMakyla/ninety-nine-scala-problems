@@ -158,4 +158,6 @@ object NinetyNineScalaProblems {
     randomSelect(n - 1, first ++ second.tail, second.head :: total)
   }
 
+  def lotto(n: Int, max: Int, used: List[Int] = Nil): List[Int] = randomSelect(n, 1.to(max).toList)
+
 }
