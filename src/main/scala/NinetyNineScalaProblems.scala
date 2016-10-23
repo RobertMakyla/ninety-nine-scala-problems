@@ -160,4 +160,13 @@ object NinetyNineScalaProblems {
 
   def lotto(n: Int, max: Int, used: List[Int] = Nil): List[Int] = randomSelect(n, 1.to(max).toList)
 
+  @tailrec
+  def randomPermute[T](ls: List[T], total: List[T] = Nil): List[T] = ls match {
+    case Nil => total
+    case _ =>
+      val pos = random(ls.size)
+      val (first, second) = ls.splitAt(pos)
+      randomPermute(first ++ second.tail, second.head :: total)
+  }
+
 }

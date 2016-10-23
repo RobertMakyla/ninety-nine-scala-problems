@@ -424,4 +424,27 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
     }
   }
 
+  "P25 (*) Generate a random permutation of the elements of a list." - {
+    "0 elements" in {
+      randomPermute(List()) mustBe Nil
+    }
+    "1 element" in {
+      randomPermute(List(1)) mustBe List(1)
+    }
+    "2 elements" in {
+      val actual = randomPermute(List(1, 2))
+      Seq(List(1, 2), List(2, 1)).contains(actual) mustBe true
+    }
+    "3-5 elements" in {
+      3.to(5).foreach { n =>
+        val correctValues = 1.to(n).toList
+        val actual = randomPermute(correctValues)
+        // println("randomPermute(" + correctValues +") => " + actual)
+        actual.distinct.size mustBe n
+        actual.size mustBe n
+        actual.forall(correctValues.contains) mustBe true
+      }
+    }
+  }
+
 }
