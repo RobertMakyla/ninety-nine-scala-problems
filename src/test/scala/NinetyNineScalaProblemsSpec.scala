@@ -447,4 +447,36 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
     }
   }
 
+  /**
+   * All 2 element combination of {a, b, c, d}: 6 possibilities
+   * {a, b}, {a, c}, {a, d}, {b, c}, {b, d}, {c, d}.
+   */
+
+  "P26 (**) Generate the combinations of K distinct objects chosen from the N elements of a list." - {
+    "n must be positive" in {
+      intercept[RuntimeException] {
+        combinations(0, List('a, 'b, 'c, 'd, 'e, 'f))
+      }.getMessage mustBe "n must be greater than zero"
+    }
+    "1 elem combinations of 1 elem" in {
+      combinations(1, List(1)) mustBe List(List(1))
+    }
+    "1 elem combinations of 2 elems" in {
+      combinations(1, List(1, 2)) mustBe List(List(1), List(2))
+    }
+    "1 elem combinations of 3 elems" in {
+      combinations(1, List(1, 2, 3)) mustBe List(List(1), List(2), List(3))
+    }
+    "2 elem combinations of 2 elements" in {
+      combinations(2, List(1, 2)) mustBe List(List(1, 2))
+    }
+    "2 elem combinations of 3 elements" in {
+      combinations(2, List(1, 2, 3)) mustBe List(List(1, 2), List(1, 3), List(2, 3))
+    }
+    "2 elem combinations of 4 elements" in {
+      combinations(2, List(1, 2, 3, 4)) mustBe List(List(1, 2), List(1, 3), List(1, 4), List(2, 3), List(2, 4), List(3, 4))
+    }
+
+  }
+
 }

@@ -169,4 +169,19 @@ object NinetyNineScalaProblems {
       randomPermute(first ++ second.tail, second.head :: total)
   }
 
+  /*
+   * combinations(2, List(1, 2, 3)) mustBe List(List(1, 2), List(1, 3), List(2, 3))
+   */
+  def combinations[T](n: Int, ls: List[T]): List[List[T]] =
+    if (n <= 0) throw new RuntimeException("n must be greater than zero")
+    else ls match {
+      case Nil => Nil
+      case _ if n == 1 => ls.map(List(_))
+      case h :: tail if n == 2 =>
+        val pairsWithHead = tail.map { t =>
+          List(h, t)
+        }
+        pairsWithHead ++ combinations(n, tail)
+    }
+
 }
