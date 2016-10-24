@@ -500,7 +500,12 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
         List(3, 4, 5)
       )
     }
+  }
 
+  "P28 (**) Sorting a list of lists according to length of sublists." in {
+    val expected = List(List('o), List('d, 'e), List('d, 'e), List('m, 'n), List('a, 'b, 'c), List('f, 'g, 'h), List('i, 'j, 'k, 'l))
+    val actual = lsort(List(List('a, 'b, 'c), List('d, 'e), List('f, 'g, 'h), List('d, 'e), List('i, 'j, 'k, 'l), List('m, 'n), List('o)))
+    actual mustBe expected
   }
 
 }

@@ -181,4 +181,6 @@ object NinetyNineScalaProblems {
         pairsWithHead ++ combinations(n, tail)
     }
 
+  def lsort[T](ls: List[List[T]]): List[List[T]] = ls.sortWith(_.length < _.length)
+
 }
