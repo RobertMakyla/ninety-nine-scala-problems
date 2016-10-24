@@ -453,11 +453,13 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
    */
 
   "P26 (**) Generate the combinations of K distinct objects chosen from the N elements of a list." - {
-    "n must be positive" in {
-      intercept[RuntimeException] {
-        combinations(0, List('a, 'b, 'c, 'd, 'e, 'f))
-      }.getMessage mustBe "n must be greater than zero"
+    "n = 0" in {
+      combinations(0, List('a, 'b, 'c, 'd, 'e, 'f)) mustBe Nil
     }
+    "list size = 0" in {
+      combinations(1, Nil) mustBe Nil
+    }
+
     "1 elem combinations of 1 elem" in {
       combinations(1, List(1)) mustBe List(List(1))
     }
@@ -467,6 +469,7 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
     "1 elem combinations of 3 elems" in {
       combinations(1, List(1, 2, 3)) mustBe List(List(1), List(2), List(3))
     }
+
     "2 elem combinations of 2 elements" in {
       combinations(2, List(1, 2)) mustBe List(List(1, 2))
     }
@@ -475,6 +478,27 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
     }
     "2 elem combinations of 4 elements" in {
       combinations(2, List(1, 2, 3, 4)) mustBe List(List(1, 2), List(1, 3), List(1, 4), List(2, 3), List(2, 4), List(3, 4))
+    }
+
+    "3 elem combinations of 3 elements" in {
+      combinations(3, List(1, 2, 3)) mustBe List(List(1, 2, 3))
+    }
+    "3 elem combinations of 4 elements" in {
+      combinations(3, List(1, 2, 3, 4)) mustBe List(List(1, 2, 3), List(1, 2, 4), List(1, 3, 4), List(2, 3, 4))
+    }
+    "3 elem combinations of 5 elements" in {
+      combinations(3, List(1, 2, 3, 4, 5)) mustBe List(
+        List(1, 2, 3),
+        List(1, 2, 4),
+        List(1, 2, 5),
+        List(1, 3, 4),
+        List(1, 3, 5),
+        List(1, 4, 5),
+        List(2, 3, 4),
+        List(2, 3, 5),
+        List(2, 4, 5),
+        List(3, 4, 5)
+      )
     }
 
   }
