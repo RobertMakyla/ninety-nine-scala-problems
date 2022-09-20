@@ -7,6 +7,10 @@ object NinetyNineScalaProblems {
   def tenTimes: Double => Double = multiplyBy(10)
   def twenty: Double = tenTimes(2)
 
+  // currying
+  def times(x:Int, y:Int) = x * y
+  def timesOneAtTheTime(f:Int) = (x:Int) => x * f //curried function
+
   @tailrec
   def last[T](ls: List[T]): T = ls match {
     case Nil => throw new NoSuchElementException

@@ -8,6 +8,9 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
   "higher-order function multiplyBy(Double)" in {
     twenty mustBe 20
   }
+  "curried function" in {
+    timesOneAtTheTime(10)(3) mustBe 30
+  }
 
   "P01 (*) Find the last element of a list." - {
     "1 element list" in {
