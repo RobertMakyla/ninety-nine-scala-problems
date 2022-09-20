@@ -2,6 +2,11 @@ import scala.annotation.tailrec
 
 object NinetyNineScalaProblems {
 
+  //implement a higher-order function multiplyBy(Double): Double => Double
+  def multiplyBy(factor: Double): Double => Double = (x: Double) => factor * x
+  def tenTimes: Double => Double = multiplyBy(10)
+  def twenty: Double = tenTimes(2)
+
   @tailrec
   def last[T](ls: List[T]): T = ls match {
     case Nil => throw new NoSuchElementException
