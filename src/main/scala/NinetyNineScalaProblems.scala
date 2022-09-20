@@ -47,12 +47,11 @@ object NinetyNineScalaProblems {
     case t => List(t)
   }
 
-  def compress[T](ls: List[T]): List[T] = ls.foldRight(List[T]()) {
-    (h: T, tail: List[T]) =>
-      tail.headOption.fold(List(h)) {
-        firstFromTail =>
-          if (h == firstFromTail) tail else h :: tail
-      }
+  def compress[T](ls: List[T]): List[T] = ls match {
+    case Nil => Nil
+    case h :: Nil => ls
+    case h :: a :: tail if h == a => compress(a :: tail)
+    case h :: a :: tail => h :: compress(a :: tail)
   }
 
   @tailrec
