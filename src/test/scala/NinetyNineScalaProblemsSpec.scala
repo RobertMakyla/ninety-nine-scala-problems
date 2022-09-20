@@ -12,6 +12,11 @@ class NinetyNineScalaProblemsSpec extends FreeSpec with MustMatchers {
     timesOneAtTheTime(10)(3) mustBe 30
   }
 
+  "compose" in {
+    fandThenG("hi") mustBe "g(f(hi))"
+    fcomposeG("hi") mustBe "f(g(hi))"
+  }
+
   "P01 (*) Find the last element of a list." - {
     "1 element list" in {
       last(List(1)) mustBe 1

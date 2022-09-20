@@ -11,6 +11,12 @@ object NinetyNineScalaProblems {
   def times(x:Int, y:Int) = x * y
   def timesOneAtTheTime(f:Int) = (x:Int) => x * f //curried function
 
+  // compose / andThen
+  def f(s: String) = "f(" + s + ")"
+  def g(s: String) = "g(" + s + ")"
+  val fandThenG = f _ andThen g _
+  val fcomposeG = f _ compose g _
+
   @tailrec
   def last[T](ls: List[T]): T = ls match {
     case Nil => throw new NoSuchElementException
