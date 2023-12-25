@@ -63,7 +63,22 @@ object NinetyNineScalaProblems {
     case l: List[_] => flatten(l)
     case t => List(t)
   }
-//
+
+  def removeAt[T](i: Int, ls: List[T]): (List[T], T) =
+    if (ls.size <= i) throw new NoSuchElementException
+    else {
+      val (first, second) = ls.splitAt(i)
+      (first ::: second.tail, second.head)
+    }
+
+  def insertAt[T](e: T, i: Int, ls: List[T]): List[T] =
+    if (ls.size < i) throw new NoSuchElementException
+    else {
+      val (first, second) = ls.splitAt(i)
+      first ++ (e :: second)
+    }
+
+  //
 //  def compress[T](ls: List[T]): List[T] = ls match {
 //    case Nil => Nil
 //    case h :: Nil => ls
@@ -140,19 +155,6 @@ object NinetyNineScalaProblems {
 //    case _ if i < 0 => rotate(i + 1, ls.last :: ls.init)
 //  }
 //
-//  def removeAt[T](i: Int, ls: List[T]): (List[T], T) =
-//    if (ls.size <= i) throw new NoSuchElementException
-//    else {
-//      val (first, second) = ls.splitAt(i)
-//      (first ::: second.tail, second.head)
-//    }
-//
-//  def insertAt[T](e: T, i: Int, ls: List[T]): List[T] =
-//    if (ls.size < i) throw new NoSuchElementException
-//    else {
-//      val (first, second) = ls.splitAt(i)
-//      first ++ (e :: second)
-//    }
 //
 //  @tailrec
 //  def range(start: Int, end: Int, total: List[Int] = Nil): List[Int] = if (end > start) {

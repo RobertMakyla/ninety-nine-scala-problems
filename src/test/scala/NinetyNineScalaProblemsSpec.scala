@@ -135,7 +135,39 @@ class NinetyNineScalaProblemsSpec extends AnyFreeSpec with Matchers {
     }
   }
 
-//  "P08 (**) Eliminate consecutive duplicates of list elements." - {
+  "P20 (*) Remove the Kth element from a list." - {
+    "0 elements" in {
+      intercept[NoSuchElementException] {
+        removeAt(0, List())
+      }
+    }
+    "1 element" in {
+      removeAt(0, List(1)) mustBe(List(), 1)
+    }
+    "n elements" in {
+      removeAt(1, List('a, 'b, 'c, 'd)) mustBe(List('a, 'c, 'd), 'b)
+    }
+
+  }
+
+  "P21 (*) Insert an element at a given position into a list." - {
+    "0 elements" in {
+      insertAt('a, 0, List()) mustBe List('a)
+    }
+    "0 elements - no such element" in {
+      intercept[NoSuchElementException] {
+        insertAt('a, 1, List())
+      }
+    }
+    "n elements" in {
+      insertAt(3, 3, List(0, 1, 2, 4, 5)) mustBe List(0, 1, 2, 3, 4, 5)
+    }
+    "ultimate test " in {
+      insertAt('new, 1, List('a, 'b, 'c, 'd)) mustBe List('a, 'new, 'b, 'c, 'd)
+    }
+  }
+
+  //  "P08 (**) Eliminate consecutive duplicates of list elements." - {
 //    case class TestCase[T](hint: String, ls: List[T], expected: List[T])
 //    List(
 //      TestCase("0 elements", Nil, Nil),
@@ -334,38 +366,7 @@ class NinetyNineScalaProblemsSpec extends AnyFreeSpec with Matchers {
 //    }
 //  }
 //
-//  "P20 (*) Remove the Kth element from a list." - {
-//    "0 elements" in {
-//      intercept[NoSuchElementException] {
-//        removeAt(0, List())
-//      }
-//    }
-//    "1 element" in {
-//      removeAt(0, List(1)) mustBe(List(), 1)
-//    }
-//    "n elements" in {
-//      removeAt(1, List('a, 'b, 'c, 'd)) mustBe(List('a, 'c, 'd), 'b)
-//    }
-//
-//  }
-//
-//  "P21 (*) Insert an element at a given position into a list." - {
-//    "0 elements" in {
-//      insertAt('a, 0, List()) mustBe List('a)
-//    }
-//    "0 elements - no such element" in {
-//      intercept[NoSuchElementException] {
-//        insertAt('a, 1, List())
-//      }
-//    }
-//    "n elements" in {
-//      insertAt(3, 3, List(0, 1, 2, 4, 5)) mustBe List(0, 1, 2, 3, 4, 5)
-//    }
-//    "ultimate test " in {
-//      insertAt('new, 1, List('a, 'b, 'c, 'd)) mustBe List('a, 'new, 'b, 'c, 'd)
-//    }
-//  }
-//
+
 //  "P22 (*) Create a list containing all integers within a given range." - {
 //    "1 elements" in {
 //      range(1, 1) mustBe List(1)
