@@ -8,7 +8,7 @@ object NinetyNineScalaProblems {
   def twenty: Double = tenTimes(2)
 
   // currying
-  def times(x:Int, y:Int) = x * y
+  def times(x: Int, y: Int) = x * y
   def timesOneAtTheTime(f: Int): Int => Int = _ * f //curried function
 
   // compose / andThen (methods of Function1[_])
@@ -33,35 +33,33 @@ object NinetyNineScalaProblems {
   }
 
   @tailrec
-  def nth[T](n: Int, ls: List[T]): T = ls match {
-    case Nil => throw new NoSuchElementException
-    case h :: _ if n == 0 => h
-    case _ :: tail => nth(n - 1, tail)
+  def nth[T](index: Int, ls: List[T]): T = ls match {
+    case l if l.size < index + 1 || index < 0 => throw new NoSuchElementException
+    case h :: _ if index == 0 => h
+    case _ :: tail => nth(index - 1, tail)
   }
 
   @tailrec
-  def length[A](ls: List[A], acc: Int = 0 ): Int = ls match {
+  def length[A](ls: List[A], acc: Int = 0): Int = ls match {
     case Nil => acc
     case _ :: tail => length(tail, acc + 1)
   }
 
   @tailrec
-  def reverse[T](ls: List[T], total: List[T] = Nil): List[T] = ls match {
-    case Nil => total
-    case h :: tail => reverse(tail, h :: total)
+  def reverse[T](ls: List[T], acc: List[T] = Nil): List[T] = ls match {
+    case Nil => acc
+    case h :: tail => reverse(tail, h :: acc)
   }
 
   @tailrec
   def isPalindrome[T](ls: List[T]): Boolean = ls match {
-    case _ if ls.size < 2 => true
-    case h :: a :: Nil => h == a
-    case h :: a :: tail => h == tail.last &&isPalindrome( a :: tail.init)
-
+    case l if l.size < 2 => true
+    case h :: tail => h == tail.last && isPalindrome(tail.init)
   }
 
   def flatten(ls: List[Any]): List[Any] = ls.flatMap {
     case l: List[_] => flatten(l)
-    case t => List(t)
+    case notAList => List(notAList)
   }
 
   def removeAt[T](i: Int, ls: List[T]): (List[T], T) =
