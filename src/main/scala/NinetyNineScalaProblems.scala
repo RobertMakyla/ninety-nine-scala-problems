@@ -9,9 +9,9 @@ object NinetyNineScalaProblems {
 
   // currying
   def times(x:Int, y:Int) = x * y
-  def timesOneAtTheTime(f:Int) = (x:Int) => x * f //curried function
+  def timesOneAtTheTime(f: Int): Int => Int = _ * f //curried function
 
-  // compose / andThen
+  // compose / andThen (methods of Function1[_])
   def f(s: String) = "f(" + s + ")"
   def g(s: String) = "g(" + s + ")"
   val fandThenG = f _ andThen g _
