@@ -57,8 +57,9 @@ object NinetyNineScalaProblems {
     case h :: tail => h == tail.last && isPalindrome(tail.init)
   }
 
+  // use flatMap
   def flatten(ls: List[Any]): List[Any] = ls.flatMap {
-    case l: List[_] => flatten(l)
+    case aList: List[_] => flatten(aList)
     case notAList => List(notAList)
   }
 
