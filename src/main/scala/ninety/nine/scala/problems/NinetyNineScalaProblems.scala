@@ -1,3 +1,5 @@
+package ninety.nine.scala.problems
+
 import scala.annotation.tailrec
 
 object NinetyNineScalaProblems {

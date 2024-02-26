@@ -1,6 +1,6 @@
-import java.util.NoSuchElementException
+package ninety.nine.scala.problems
 
-import NinetyNineScalaProblems._
+import ninety.nine.scala.problems.NinetyNineScalaProblems._
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers
 
