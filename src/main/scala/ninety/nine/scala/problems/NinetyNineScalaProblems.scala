@@ -59,7 +59,7 @@ object NinetyNineScalaProblems {
     case h :: tail => h == tail.last && isPalindrome(tail.init)
   }
 
-  // use flatMap
+  // use flatMap (Any can contain a: List[T] or not a list: T)
   def flatten(ls: List[Any]): List[Any] = ls.flatMap {
     case aList: List[_] => flatten(aList)
     case notAList => List(notAList)
