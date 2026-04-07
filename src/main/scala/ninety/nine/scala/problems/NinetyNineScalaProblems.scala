@@ -68,7 +68,7 @@ object NinetyNineScalaProblems {
   def removeAt[T](i: Int, ls: List[T]): (List[T], T) =
     if (ls.size <= i) throw new NoSuchElementException
     else {
-      val (first, second) = ls.splitAt(i)
+      val (first, second) = ls.splitAt(i) // List(0,1,2,3).splitAt(2) => (0,1)  and (2,3)
       (first ::: second.tail, second.head)
     }
 
