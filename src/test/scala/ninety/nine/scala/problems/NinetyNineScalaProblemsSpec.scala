@@ -134,7 +134,12 @@ class NinetyNineScalaProblemsSpec extends AnyFreeSpec with Matchers {
       flatten(List(1, 2, 3, List(4, List(5)))) mustBe List(1, 2, 3, 4, 5)
     }
   }
-
+  "removeDuplicates" in {
+    removeDuplicatedChars("") mustBe ""
+    removeDuplicatedChars("a") mustBe "a"
+    removeDuplicatedChars("abc") mustBe "abc"
+    removeDuplicatedChars("abaacccabbdbc") mustBe "abcd"
+  }
   "P20 (*) Remove the Kth element from a list." - {
     "0 elements" in {
       intercept[NoSuchElementException] {
