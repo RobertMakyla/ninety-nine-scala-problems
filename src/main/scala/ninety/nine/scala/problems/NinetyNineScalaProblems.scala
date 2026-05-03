@@ -84,8 +84,7 @@ object NinetyNineScalaProblems {
   @tailrec
   def removeDuplicatedChars(s: String, acc: List[Char] = Nil): String = s.toList match {
     case Nil => acc.reverse.mkString
-    case h :: tail if acc.contains(h) => removeDuplicatedChars(tail.mkString, acc)
-    case h :: tail => removeDuplicatedChars(tail.mkString, h :: acc)
+    case h :: tail => removeDuplicatedChars(tail.mkString, if (acc.contains(h)) acc else h :: acc)
   }
 
   //
